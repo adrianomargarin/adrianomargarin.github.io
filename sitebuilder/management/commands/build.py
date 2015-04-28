@@ -44,20 +44,16 @@ class Command(BaseCommand):
 
             os.mkdir(settings.SITE_OUTPUT_DIRECTORY)
             os.makedirs(settings.STATIC_ROOT)
+
             call_command("collectstatic", interactive=False, clear=True, verbosity=0)
             call_command("compress", interactive=False, force=True)
+
             client = Client()
+            output_dir = settings.SITE_OUTPUT_DIRECTORY
 
             for page in pages:
                 url = reverse("page", kwargs={"slug": page})
                 response = client.get(url)
-                if page == "index":
-                    output_dir = settings.SITE_OUTPUT_DIRECTORY
-                else:
-                    output_dir = os.path.join(settings.SITE_OUTPUT_DIRECTORY, page)
-                    if not os.path.exists(output_dir):
-                        os.makedirs(output_dir)
 
-                with open(os.path.join(output_dir, "index.html"), "wb") as fl:
+                with open(os.path.join(output_dir, "%s.html" % page), "wb") as fl:
                     fl.write(response.content)
-
