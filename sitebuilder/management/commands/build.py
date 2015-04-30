@@ -49,11 +49,17 @@ class Command(BaseCommand):
             call_command("compress", interactive=False, force=True)
 
             client = Client()
-            output_dir = settings.SITE_OUTPUT_DIRECTORY
 
             for page in pages:
                 url = reverse("page", kwargs={"slug": page})
                 response = client.get(url)
 
-                with open(os.path.join(output_dir, "%s.html" % page), "wb") as fl:
+                if page == "index":
+                    output_dir = settings.SITE_OUTPUT_DIRECTORY
+                else:
+                    output_dir = os.path.join(settings.SITE_OUTPUT_DIRECTORY, page)
+                    if not os.path.exists(output_dir):
+                        os.makedirs(output_dir)
+
+                with open(os.path.join(output_dir, "index.html"), "wb") as fl:
                     fl.write(response.content)

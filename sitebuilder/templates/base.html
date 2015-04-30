@@ -13,6 +13,7 @@
     {% compress css %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-theme.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/site.css' %}">
     {% endcompress css %}
 </head>
@@ -28,11 +29,11 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-                <a class="navbar-brand" href="{% url 'page' 'homepage' %}">Rapid Prototypes</a>
+                <a class="navbar-brand" href="/">Rapid Prototypes</a>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li {% if slug == "index" %}class="active"{% endif %}>
-                            <a href="{% url 'page' 'homepage' %}">Home</a>
+                            <a href="/">Home</a>
                         </li>
                         <li {% if slug == "contact" %}class="active"{% endif %}>
                             <a href="{% url 'page' 'contact' %}">Contact</a>
