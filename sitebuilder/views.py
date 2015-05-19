@@ -2,6 +2,8 @@
 
 import os
 import json
+import hashlib
+import urllib
 
 from django.conf import settings
 from django.http import Http404
@@ -12,7 +14,6 @@ from django.utils._os import safe_join
 
 
 def get_page_or_404(name):
-
     try:
         file_path = safe_join(settings.SITE_PAGES_DIRECTORY, name)
     except ValueError:
@@ -34,7 +35,6 @@ def get_page_or_404(name):
     page._meta = meta
 
     return page
-
 
 def page(request, slug="index"):
     file_name = "{}.html".format(slug)

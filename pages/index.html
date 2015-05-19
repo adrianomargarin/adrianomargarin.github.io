@@ -1,9 +1,14 @@
 {% load webdesign %}
+{% load gravatar %}
 
 <div class="jumbotron">
     <div class="container">
-        <h1>Welcome To the Site</h1>
-        <p>Insert maketing copy here.</p>
+        <div class="pull-right">
+            <img src="{% gravatar_url 'adrcxs@gmail.com' %}">
+        </div>
+        <div class="pull-left">
+            <h2>Bem vindo a minha página profissional</h2>
+        </div>
     </div>
 </div>
 <div class="container">
@@ -15,16 +20,8 @@
         <div class="col-md-6">
             <h2>Contact</h2>
             <p>{% lorem %}</p>
-            <p>
-                <a href="{% url 'page' 'contact' %}" class="btn btn-default" role="button">Contact us</a>
-            </p>
+            <p><a href="{% url 'page' 'contact' %}" class="btn btn-default" role="button">Contact us</a></p>
         </div>
     </div>
 </div>
-<hr>
 
-<footer>
-    <div class="container">
-        <p>&copy; Adriano Margarin {% now 'Y' %}</p>
-    </div>
-</footer>

@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ description|default:'Página pessoal de Adriano Margarin' }}">
     <meta name="keywords" content="{{ keywords|default:'Adriano Margarin' }}">
+    <link rel="icon" type="image/png" href="{% static 'favicon.png' %}" />
+
     <title>{% block title %}Adriano Margarin{% endblock %}</title>
     {% compress css %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
@@ -29,21 +31,24 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-                <a class="navbar-brand" href="/">Rapid Prototypes</a>
+                <a class="navbar-brand" href="/">Adriano Margarin</a>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li {% if slug == "index" %}class="active"{% endif %}>
-                            <a href="/">Home</a>
-                        </li>
-                        <li {% if slug == "contact" %}class="active"{% endif %}>
-                            <a href="{% url 'page' 'contact' %}">Contact</a>
-                        </li>
+                        <li {% if slug == "index" %}class="active"{% endif %}><a href="/">Início</a></li>
+                        <li {% if slug == "contact" %}class="active"{% endif %}><a href="{% url 'page' 'contact' %}">Contatos</a></li>
+                        <li {% if slug == "curriculum-vitae" %}class="active"{% endif %}><a href="{% url 'page' 'curriculum-vitae' %}">Curriculum Vitae</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     {% endblock %}
     {% block content %}{% endblock %}
+    <hr>
+    <footer>
+        <div class="container">
+            <p>&copy; Adriano Margarin {% now 'Y' %}</p>
+        </div>
+    </footer>
     {% compress js %}
         <script src="{% static 'js/jquery-2.1.3.min.js' %}"></script>
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
